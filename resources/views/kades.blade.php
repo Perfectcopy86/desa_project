@@ -370,7 +370,7 @@
                 role="button"
                 data-bs-toggle="dropdown"
               >
-                Pemerintahan
+                Pemerintah
               </a>
               <ul class="dropdown-menu">
                 <li>
