@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Government Website</title>
+    <title>Desa Tangsimekar</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
@@ -359,95 +359,55 @@
     </section>
 
     <!-- APB Section -->
-    <section id="APB" class="tabel section-title">
+    <section id="APB" class="tabel section-title bg-secondary">
       <div class="container">
-        <h2 class="text-center mb-5">APB Desa</h2>
-        <div class="container-fluid">
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4 table-primary">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-dark">APB Desa</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table
-                  class="table table-bordered"
-                  id="dataTableAPB"
-                  width="100%"
-                  cellspacing="0"
-                >
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Judul</th>
-                      <th>Kategori</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>FORMAT RPJM DESA SDGs-permendes21</td>
-                      <td>
-                        <button class="btn btn-warning" type="button">
-                          Peraturan Kepala Desa
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-warning" type="button">
-                          Lihat
-                        </button>
-                        <button class="btn btn-success" type="button">
-                          Download
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>
-                        Daftar Usulan Masyarakat Berdasarkan Tujuan SDGS
-                        Desa-permendes21
-                      </td>
-                      <td>
-                        <button class="btn btn-warning" type="button">
-                          Peraturan Kepala Desa
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-warning" type="button">
-                          Lihat
-                        </button>
-                        <button class="btn btn-success" type="button">
-                          Download
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>SK PKTD</td>
-                      <td>
-                        <button class="btn btn-warning" type="button">
-                          Peraturan Kepala Desa
-                        </button>
-                      </td>
-                      <td>
-                        <button class="btn btn-warning" type="button">
-                          Lihat
-                        </button>
-                        <button class="btn btn-success" type="button">
-                          Download
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+          <h2 class="text-center mb-5">APB Desa</h2>
+          <div class="container-fluid">
+              <!-- DataTales Example -->
+              <div class="card shadow mb-4 table-primary">
+                  <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-dark">APB Desa</h6>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table table-bordered" id="dataTableAPB" width="100%" cellspacing="0">
+                              <thead>
+                                  <tr>
+                                      <th>No</th>
+                                      <th>Judul</th>
+                                      <th>Kategori</th>
+                                      <th>Aksi</th>
+                                  </tr>
+                              </thead>
+  
+                              <tbody>
+                                  @foreach ($apbDocuments as $index => $document)
+                                      <tr>
+                                          <th scope="row">{{ $index + 1 }}</th>
+                                          <td>{{ $document->title }}</td>
+                                          <td>
+                                              <button class="btn btn-warning" type="button">
+                                                  {{ $document->category }}
+                                              </button>
+                                          </td>
+                                          <td>
+                                              <a href="{{ asset('assets/documents/' . $document->document) }}" target="_blank" class="btn btn-warning">
+                                                  Lihat
+                                              </a>
+                                              <a href="{{ asset('assets/documents/' . $document->document) }}" class="btn btn-success" download>
+                                                  Download
+                                              </a>
+                                          </td>
+                                      </tr>
+                                  @endforeach
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
       </div>
-    </section>
+  </section>
 
     
 

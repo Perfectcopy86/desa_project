@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Government Website</title>
+    <title>Desa Tangsimekar</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -531,8 +531,16 @@ h5 {
                       </tr>
                   </thead>
                   <tbody>
-                      <!-- Baris data akan ditambahkan oleh JavaScript -->
-                  </tbody>
+                    @foreach($dataPenduduk as $index => $item)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $item['rw'] }}</td>
+                        <td>{{ $item['total'] }}</td>
+                        <td>{{ $item['laki'] }}</td>
+                        <td>{{ $item['perempuan'] }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
               </table>
               
             </section>
@@ -551,8 +559,14 @@ h5 {
                         </tr>
                     </thead>
                     <tbody>
-                    
-                    </tbody>
+                      @foreach($datapopulasi as $index => $item)
+                      <tr>
+                          <td>{{ $index + 1 }}</td>
+                          <td>{{ $item['jenis'] }}</td>
+                          <td>{{ $item['jumlah'] }}</td>
+                      </tr>
+                      @endforeach
+                  </tbody>
                 </table>
             </section>
 
@@ -572,8 +586,16 @@ h5 {
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Baris data akan ditambahkan oleh JavaScript -->
-                </tbody>
+                  @foreach($dataAgama as $index => $item)
+                  <tr>
+                      <td>{{ $index + 1 }}</td>
+                      <td>{{ $item['agama'] }}</td>
+                      <td>{{ $item['laki'] }}</td>
+                      <td>{{ $item['perempuan'] }}</td>
+                      <td>{{ $item['total'] }}</td>
+                  </tr>
+                  @endforeach
+              </tbody>
             </table>
             
           </section>
@@ -594,8 +616,16 @@ h5 {
                   </tr>
               </thead>
               <tbody>
-                  <!-- Baris data akan ditambahkan oleh JavaScript -->
-              </tbody>
+                @foreach($dataPendidikan as $index => $item)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $item['pendidikan'] }}</td>
+                    <td>{{ $item['laki'] }}</td>
+                    <td>{{ $item['perempuan'] }}</td>
+                    <td>{{ $item['total'] }}</td>
+                </tr>
+                @endforeach
+            </tbody>
           </table>
           
         </section>
@@ -616,8 +646,16 @@ h5 {
                 </tr>
             </thead>
             <tbody>
-                <!-- Baris data akan ditambahkan oleh JavaScript -->
-            </tbody>
+              @foreach($dataKelompokUmur as $index => $item)
+              <tr>
+                  <td>{{ $index + 1 }}</td>
+                  <td>{{ $item['umur'] }}</td>
+                  <td>{{ $item['laki'] }}</td>
+                  <td>{{ $item['perempuan'] }}</td>
+                  <td>{{ $item['total'] }}</td>
+              </tr>
+              @endforeach
+          </tbody>
         </table>
         
       </section>
@@ -727,191 +765,259 @@ h5 {
         </div>
       </footer>
       <script>
-        // Data untuk Persebaran Penduduk (RW)
-        const dataRw = [
-            { rw: 'RW 01', laki: 281, perempuan: 215, total: 496 },
-            { rw: 'RW 02', laki: 315, perempuan: 262, total: 577 },
-            { rw: 'RW 03', laki: 258, perempuan: 253, total: 511 },
-            { rw: 'RW 04', laki: 291, perempuan: 296, total: 587 },
-            { rw: 'RW 05', laki: 582, perempuan: 574, total: 1156 },
-            { rw: 'RW 06', laki: 282, perempuan: 283, total: 565 },
-            { rw: 'RW 07', laki: 335, perempuan: 308, total: 643 },
-            { rw: 'RW 08', laki: 319, perempuan: 326, total: 645 },
-            { rw: 'RW 09', laki: 198, perempuan: 196, total: 394 },
-            { rw: 'RW 10', laki: 370, perempuan: 383, total: 753 },
-            { rw: 'RW 11', laki: 415, perempuan: 405, total: 820 },
-            { rw: 'RW 12', laki: 215, perempuan: 195, total: 410 },
-            { rw: 'RW 13', laki: 356, perempuan: 347, total: 703 },
-            { rw: 'RW 14', laki: 263, perempuan: 249, total: 512 },
-            { rw: 'RW 15', laki: 305, perempuan: 312, total: 617 },
-        ];
+      // Data untuk Persebaran Penduduk (RW)
+      const dataRw = @json($dataPenduduk);
 
-        const labelsRw = dataRw.map(item => item.rw);
-        const lakiRw = dataRw.map(item => item.laki);
-        const perempuanRw = dataRw.map(item => item.perempuan);
-        const totalRw = dataRw.map(item => item.total);
-    
-        const tableRw = document.getElementById("tableRw").getElementsByTagName("tbody")[0];
+      const labelsRw = dataRw.map((item) => item.rw);
+      const lakiRw = dataRw.map((item) => item.laki);
+      const perempuanRw = dataRw.map((item) => item.perempuan);
+      const totalRw = dataRw.map((item) => item.total);
 
-        // Loop melalui dataRw dan tambahkan baris ke tabel
-        let no = 1;
-        dataRw.forEach(item => {
-            // Buat baris baru
-            const row = tableRw.insertRow();
+       // Grafik 1: Persebaran Penduduk (RW)
+      new Chart(document.getElementById("chartRw"), {
+        type: "bar",
+        data: {
+          labels: labelsRw,
+          datasets: [
+            { label: "Laki-Laki", data: lakiRw, backgroundColor: "#42a5f5" },
+            {
+              label: "Perempuan",
+              data: perempuanRw,
+              backgroundColor: "#ef5350",
+            },
+            { label: "Total", data: totalRw, backgroundColor: "#66bb6a" },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: "Persebaran Penduduk Berdasarkan RW",
+            },
+          },
+          scales: {
+            x: { title: { display: true, text: "RW" } },
+            y: {
+              title: { display: true, text: "Jumlah Penduduk" },
+              beginAtZero: true,
+            },
+          },
+        },
+      });
 
-            // Tambahkan sel untuk No
-            const cellNo = row.insertCell(0);
-            cellNo.textContent = no;
-            // Tambahkan sel untuk RW
-            const cellRw = row.insertCell(1);
-            cellRw.textContent = item.rw;
+      // Data untuk Jenis Kelamin
+      const dataGender = @json($datapopulasi);
+      const labelsGender = dataGender.map((item) => item.jenis);
+      const jumlahGender = dataGender.map((item) => item.jumlah);
 
-            // Tambahkan sel untuk Total
-            const cellTotal = row.insertCell(2);
-            cellTotal.textContent = item.total;
+      // Data untuk Agama
+      const dataReligion = @json($dataAgama);
+      const labelsReligion = dataReligion.map((item) => item.agama);
+      const lakiReligion = dataReligion.map((item) => item.laki);
+      const perempuanReligion = dataReligion.map((item) => item.perempuan);
+      const totalReligion = dataReligion.map((item) => item.total);
 
-            // Tambahkan sel untuk Laki-Laki
-            const cellLaki = row.insertCell(3);
-            cellLaki.textContent = item.laki;
+      const dataPendidikan =  @json($dataPendidikan);
 
-            // Tambahkan sel untuk Perempuan
-            const cellPerempuan = row.insertCell(4);
-            cellPerempuan.textContent = item.perempuan;
-            no++;
-        });
-        // Data untuk Jenis Kelamin
-        const dataGender = [
-          { jenis: 'Laki-Laki', jumlah: 4785 },
-          { jenis: 'Perempuan', jumlah: 4604 }
-        ];
-        const labelsGender = dataGender.map(item => item.jenis);
-        const jumlahGender = dataGender.map(item => item.jumlah);
-        no = 1;
-        const tableGender = document.getElementById("tableGender").getElementsByTagName("tbody")[0];
-        dataGender.forEach(item => {
-            // Buat baris baru
-            const row = tableGender.insertRow();
+      const labelsPendidikan = dataPendidikan.map((item) => item.pendidikan);
+      const lakiPendidikan = dataPendidikan.map((item) => item.laki);
+      const perempuanPendidikan = dataPendidikan.map((item) => item.perempuan);
+      const totalPendidikan = dataPendidikan.map((item) => item.total);
 
-            // Tambahkan sel untuk No
-            const cellNo = row.insertCell(0);
-            cellNo.textContent = no;
-            // Tambahkan sel untuk RW
-            const cellRw = row.insertCell(1);
-            cellRw.textContent = item.jenis;
+      const dataUmur = @json($dataKelompokUmur);
+      const labelsUmur = dataUmur.map((item) => item.umur);
+      const lakiUmur = dataUmur.map((item) => item.laki);
+      const perempuanUmur = dataUmur.map((item) => item.perempuan);
+      const totalUmur = dataUmur.map((item) => item.total);
 
-            // Tambahkan sel untuk Total
-            const cellTotal = row.insertCell(2);
-            cellTotal.textContent = item.jumlah;
-            no++;
-        });
-        // Data untuk Agama
-        const dataReligion = [
-          { agama: 'Islam', laki: 4614, perempuan: 4484, total: 9089 },
-          { agama: 'Kristen Katholik', laki: 78, perempuan: 51, total: 129 },
-          { agama: 'Kristen Protestan', laki: 93, perempuan: 69, total: 162 },
-          { agama: 'Hindu', laki: 0, perempuan: 0, total: 0 },
-          { agama: 'Konghucu', laki: 0, perempuan: 0, total: 0 },
-          { agama: 'Budha', laki: 0, perempuan: 0, total: 0 }
-        ];
-        const labelsReligion = dataReligion.map(item => item.agama);
-        const lakiReligion = dataReligion.map(item => item.laki);
-        const perempuanReligion = dataReligion.map(item => item.perempuan);
-        const totalReligion = dataReligion.map(item => item.total);
-        no = 1;
-        const tableReligion = document.getElementById("tableReligion").getElementsByTagName("tbody")[0];
-        dataReligion.forEach(item => {
-            const row = tableReligion.insertRow();
 
-            const cellNo = row.insertCell(0);
-            cellNo.textContent = no;
+      // Grafik 2: Jenis Kelamin
+      new Chart(document.getElementById("chartGender"), {
+        type: "pie",
+        data: {
+          labels: labelsGender,
+          datasets: [
+            {
+              label: "Jenis Kelamin",
+              data: jumlahGender,
+              backgroundColor: ["#42a5f5", "#ef5350"],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: "Distribusi Penduduk Berdasarkan Jenis Kelamin",
+            },
+          },
+        },
+      });
 
-            const cellAgama = row.insertCell(1);
-            cellAgama.textContent = item.agama;
+      // Grafik 3: Data Kependudukan Menurut Agama
+      new Chart(document.getElementById("chartReligion"), {
+        type: "bar",
+        data: {
+          labels: labelsReligion,
+          datasets: [
+            {
+              label: "Laki-Laki",
+              data: lakiReligion,
+              backgroundColor: "#42a5f5",
+            },
+            {
+              label: "Perempuan",
+              data: perempuanReligion,
+              backgroundColor: "#ef5350",
+            },
+            { label: "Total", data: totalReligion, backgroundColor: "#66bb6a" },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: "Data Kependudukan Berdasarkan Agama",
+            },
+          },
+          scales: {
+            x: { title: { display: true, text: "Agama" } },
+            y: {
+              title: { display: true, text: "Jumlah Penduduk" },
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+      
+      // Data untuk Pekerjaan
+      const dataPekerjaan = @json($dataPekerjaan);
 
-            const cellLaki = row.insertCell(2);
-            cellLaki.textContent = item.laki;
+      const labelsPekerjaan = dataPekerjaan.map((item) => item.pekerjaan);
+      const lakiPekerjaan = dataPekerjaan.map((item) => item.laki);
+      const perempuanPekerjaan = dataPekerjaan.map((item) => item.perempuan);
+      const totalPekerjaan = dataPekerjaan.map((item) => item.total);
 
-            const cellPr = row.insertCell(3);
-            cellPr.textContent = item.perempuan;
+      // Grafik 4: Data Kependudukan Berdasarkan Pekerjaan
+      new Chart(document.getElementById("chartPekerjaan"), {
+        type: "bar",
+        data: {
+          labels: labelsPekerjaan,
+          datasets: [
+            {
+              label: "Laki-Laki",
+              data: lakiPekerjaan,
+              backgroundColor: "#42a5f5",
+            },
+            {
+              label: "Perempuan",
+              data: perempuanPekerjaan,
+              backgroundColor: "#ef5350",
+            },
+            {
+              label: "Total",
+              data: totalPekerjaan,
+              backgroundColor: "#66bb6a",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: "Data Kependudukan Berdasarkan Pekerjaan",
+            },
+          },
+          scales: {
+            x: { 
+              title: { display: true, text: "Jenis Pekerjaan" },
+              stacked: false, // Set to false to show grouped bars
+            },
+            y: {
+              title: { display: true, text: "Jumlah Penduduk" },
+              beginAtZero: true,
+            },
+          },
+        },
+      });
 
-            const cellTotal = row.insertCell(4);
-            cellTotal.textContent = item.total;
-            no++;
-        });    
 
-        const dataPendidikan = [
-            { pendidikan: 'Tidak/Belum Sekolah', laki: 481, perempuan: 489, total: 970 },
-            { pendidikan: 'Belum Tamat SD/Sederajat', laki: 619, perempuan: 687, total: 1306 },
-            { pendidikan: 'Tamat SD/Sederajat', laki: 793, perempuan: 865, total: 1658 },
-            { pendidikan: 'SLTP/Sederajat', laki: 881, perempuan: 807, total: 1688 },
-            { pendidikan: 'SLTA/Sederajat', laki: 1765, perempuan: 1536, total: 3301 },
-            { pendidikan: 'Diploma I/II', laki: 0, perempuan: 0, total: 0 },
-            { pendidikan: 'Akademi/Diploma III/Sarjana Muda', laki: 101, perempuan: 113, total: 214 },
-            { pendidikan: 'Diploma IV/Strata I', laki: 128, perempuan: 98, total: 226 },
-            { pendidikan: 'Strata II', laki: 17, perempuan: 9, total: 26 },
-            { pendidikan: 'Strata III', laki: 0, perempuan: 0, total: 0 },
-        ];
+      new Chart(document.getElementById("chartPendidikan"), {
+        type: "bar",
+        data: {
+          labels: labelsPendidikan,
+          datasets: [
+            {
+              label: "Laki-Laki",
+              data: lakiPendidikan,
+              backgroundColor: "#42a5f5",
+            },
+            {
+              label: "Perempuan",
+              data: perempuanPendidikan,
+              backgroundColor: "#ef5350",
+            },
+            {
+              label: "Total",
+              data: totalPendidikan,
+              backgroundColor: "#66bb6a",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: "Data Kependudukan Berdasarkan Pendidikan Terakhir",
+            },
+          },
+          scales: {
+            x: { title: { display: true, text: "Pendidikan Terakhir" } },
+            y: {
+              title: { display: true, text: "Jumlah Penduduk" },
+              beginAtZero: true,
+            },
+          },
+        },
+      });
 
-        const labelsPendidikan = dataPendidikan.map(item => item.pendidikan);
-        const lakiPendidikan = dataPendidikan.map(item => item.laki);
-        const perempuanPendidikan = dataPendidikan.map(item => item.perempuan);
-        const totalPendidikan = dataPendidikan.map(item => item.total);
-        
-        no = 1;
-        const tablePendidikan = document.getElementById("tablePendidikan").getElementsByTagName("tbody")[0];
-        dataPendidikan.forEach(item => {
-            const row = tablePendidikan.insertRow();
-
-            const cellNo = row.insertCell(0);
-            cellNo.textContent = no;
-
-            const cellpendidikan = row.insertCell(1);
-            cellpendidikan.textContent = item.pendidikan;
-
-            const cellLaki = row.insertCell(2);
-            cellLaki.textContent = item.laki;
-
-            const cellPr = row.insertCell(3);
-            cellPr.textContent = item.perempuan;
-
-            const cellTotal = row.insertCell(4);
-            cellTotal.textContent = item.total;
-            no++;
-        });
-
-        const dataUmur = [
-          { umur: 'Balita (0-5 tahun)', laki: 300, perempuan: 320, total: 620 },
-          { umur: 'Anak-Anak (6-17 tahun)', laki: 80, perempuan: 90, total: 170 },
-          { umur: 'Dewasa (18-50 tahun)', laki: 80, perempuan: 90, total: 170 },
-          { umur: 'Tua (50-120 tahun)', laki: 30, perempuan: 40, total: 70 },
-        ];
-        const labelsUmur = dataUmur.map(item => item.umur);
-        const lakiUmur = dataUmur.map(item => item.laki);
-        const perempuanUmur = dataUmur.map(item => item.perempuan);
-        const totalUmur = dataUmur.map(item => item.total);
-
-        no = 1;
-        const tableUmur = document.getElementById("tableUmur").getElementsByTagName("tbody")[0];
-        dataUmur.forEach(item => {
-            const row = tableUmur.insertRow();
-
-            const cellNo = row.insertCell(0);
-            cellNo.textContent = no;
-
-            const cellumur = row.insertCell(1);
-            cellumur.textContent = item.umur;
-
-            const cellLaki = row.insertCell(2);
-            cellLaki.textContent = item.laki;
-
-            const cellPr = row.insertCell(3);
-            cellPr.textContent = item.perempuan;
-
-            const cellTotal = row.insertCell(4);
-            cellTotal.textContent = item.total;
-            no++;
-        });
-      </script>
+      new Chart(document.getElementById("chartUmur"), {
+        type: "bar",
+        data: {
+          labels: labelsUmur,
+          datasets: [
+            { label: "Laki-Laki", data: lakiUmur, backgroundColor: "#42a5f5" },
+            {
+              label: "Perempuan",
+              data: perempuanUmur,
+              backgroundColor: "#ef5350",
+            },
+            { label: "Total", data: totalUmur, backgroundColor: "#66bb6a" },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: "Data Kependudukan Berdasarkan Kelompok Umur",
+            },
+          },
+          scales: {
+            x: { title: { display: true, text: "Kelompok Umur" } },
+            y: {
+              title: { display: true, text: "Jumlah Penduduk" },
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
       <script>
             document.addEventListener("DOMContentLoaded", () => {
                 const buttons = document.querySelectorAll("#kategori button");

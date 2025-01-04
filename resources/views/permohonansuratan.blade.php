@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Informasi Pelayanan Desa</title>
+    <title>Desa Tangsimekar</title>
     <link
       crossorigin="anonymous"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -391,7 +391,7 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">1</th>
-                                        <td>FORMAT RPJM DESA SDGs-permendes21</td>
+                                        <td>Surat Biodata Penduduk</td>
                                         <td>
                                             <button
                                                 class="btn btn-warning"
@@ -405,8 +405,7 @@
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>
-                                            Daftar Usulan Masyarakat Berdasarkan
-                                            Tujuan SDGS Desa-permendes21
+                                        Surat Keterangan Pindah Penduduk
                                         </td>
 
                                         <td>
@@ -421,7 +420,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
-                                        <td>SK PKTD</td>
+                                        <td>Surat Keterangan Jual Beli</td>
 
                                         <td>
                                             <button

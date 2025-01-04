@@ -1,75 +1,233 @@
-function openAddModal() {
-    isEditMode = false;
-    editingId = null;
-  
-    document.getElementById('dataModalLabel').textContent = 'Tambah Data';
-    document.getElementById('dataForm').reset(); // Reset semua input
-  
-    const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
-    dataModal.show();
-  }
-  
-function saveData() {
-    const no = document.getElementById('dataNo').value;
-    const nama = document.getElementById('dataJudul').value;
-    const jabatan = document.getElementById('dataKategori').value;
-    const foto = document.getElementById('dataDokumen').files[0];
-  
-    if (!judul || !deskripsi) {
-      alert('judul dan deskripsi harus diisi.');
-      return;
-    }
-  
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const fotoUrl = foto ? e.target.result : '';
-  
-      if (isEditMode) {
-        // Update baris tabel yang ada
-        const row = document.querySelector(`#table-perangkat-desa tbody tr:nth-child(${editingId})`);
-        row.children[1].innerHTML = fotoUrl ? `<img src="${fotoUrl}" class="card-img-top" alt="Foto">` : row.children[1].innerHTML;
-        row.children[2].textContent = nama;
-        row.children[3].textContent = deskripsi;
-        row.children[4].textContent = jabatan;
-      } else {
-        // Tambahkan data baru ke tabel
-        const tableBody = document.querySelector('#table-perangkat-desa tbody');
-        const newRow = `
-          <tr>
-            <td>${nomo || tableBody.children.length + 1}</td>
-            <td>${fotoUrl ? `<img src="${fotoUrl}" class="card-img-top" alt="Foto">` : ''}</td>
-            <td>${nama}</td>
-            <td>${jabatan}</td>
-            <td>
-              <button class="btn btn-light" onclick="openEditModal(${tableBody.children.length + 1})">Edit</button>
-              <button class="btn btn-danger" onclick="openDeleteModal(${tableBody.children.length + 1})">Hapus</button>
-            </td>
-          </tr>
-        `;
-        tableBody.insertAdjacentHTML('beforeend', newRow);
-      }
-  
-      // Tutup modal
-      const dataModal = bootstrap.Modal.getInstance(document.getElementById('dataModal'));
-      dataModal.hide();
-    };
-  }
+// State mode (tambah/edit)
+isEditMode = false;
 
-function openEditModal(id) {
-    isEditMode = true;
-    editingId = id;
-  
-    document.getElementById('dataModalLabel').textContent = 'Edit Data';
-    document.getElementById('dataNo').value = id; // Bisa ambil data berdasarkan ID jika ada
-    document.getElementById('dataRw').value = '001'; // Reset file input
-    document.getElementById('dataLaki').value = 278; // Reset file input
-    document.getElementById('dataPerempuan').value = 278; // Reset file input
-    document.getElementById('dataTotal').value = 278; // Reset file input
-    const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
+function openAddModal(type) {
+    isEditMode = false; // Set mode tambah
+    document.getElementById(
+        "dataModalLabel"
+    ).textContent = `Tambah Data (${type})`;
+    document.getElementById("dataId").value = ""; // Clear ID
+    document.getElementById("dataForm").reset(); // Clear form
+    document.getElementById("dataForm").setAttribute("data-type", type); // Set tipe data
+
+    // Tampilkan form sesuai tipe
+    switchForm(type);
+
+    const dataModal = new bootstrap.Modal(document.getElementById("dataModal"));
     dataModal.show();
 }
 
-function openDeleteModal(id) {
-    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
-    deleteModal.show();
-  }
+function openEditModal(type, data) {
+    isEditMode = true;
+    document.getElementById(
+        "dataModalLabel"
+    ).textContent = `Edit Data (${type})`;
+    document.getElementById("dataId").value = data.id;
+    document.getElementById("dataForm").setAttribute("data-type", type);
+
+    // Tampilkan form sesuai tipe
+    switchForm(type);
+
+    if (type === "persebaran") {
+        document.getElementById("dataRw").value = data.group;
+        document.getElementById("dataLaki").value = data.male;
+        document.getElementById("dataPerempuan").value = data.female;
+    } else if (type === "populasi") {
+        document.getElementById("dataGender").value = data.jenis_kelompok;
+        document.getElementById("dataJumlah").value = data.jumlah;
+    } else if (
+        type === "agama" ||
+        type === "pendidikan" ||
+        type === "pekerjaan" ||
+        type === "kelompok-umur"
+    ) {
+        document.getElementById("dataJenisKelompok").value =
+            data.jenis_kelompok;
+        document.getElementById("dataLakiAgama").value = data.laki_laki; // Update ID
+        document.getElementById("dataPerempuanAgama").value = data.perempuan; // Update ID
+    }
+
+    const dataModal = new bootstrap.Modal(document.getElementById("dataModal"));
+    dataModal.show();
+}
+
+function switchForm(type) {
+    // Toggle visibility form sesuai tipe
+    const formPersebaran = document.getElementById("formPersebaran");
+    const formPopulasi = document.getElementById("formPopulasi");
+    const formAgama = document.getElementById("formAgama");
+
+    if (type === "persebaran") {
+        formPersebaran.classList.remove("d-none");
+        formPopulasi.classList.add("d-none");
+        formAgama.classList.add("d-none");
+    } else if (type === "populasi") {
+        formPersebaran.classList.add("d-none");
+        formPopulasi.classList.remove("d-none");
+        formAgama.classList.add("d-none");
+    } else if (
+        type === "agama" ||
+        type === "pendidikan" ||
+        type === "pekerjaan" ||
+        type === "kelompok-umur"
+    ) {
+        formPersebaran.classList.add("d-none");
+        formPopulasi.classList.add("d-none");
+        formAgama.classList.remove("d-none");
+    }
+}
+
+function saveData() {
+    const type = document.getElementById("dataForm").getAttribute("data-type");
+    const id = document.getElementById("dataId").value;
+
+    let data;
+    if (type === "persebaran") {
+        data = {
+            group: document.getElementById("dataRw").value,
+            male: parseInt(document.getElementById("dataLaki").value),
+            female: parseInt(document.getElementById("dataPerempuan").value),
+            total:
+                parseInt(document.getElementById("dataLaki").value) +
+                parseInt(document.getElementById("dataPerempuan").value),
+        };
+    } else if (type === "populasi") {
+        data = {
+            jenis_kelompok: document.getElementById("dataGender").value,
+            jumlah: parseInt(document.getElementById("dataJumlah").value),
+        };
+    } else if (
+        type === "agama" ||
+        type === "pendidikan" ||
+        type === "pekerjaan" ||
+        type === "kelompok-umur"
+    ) {
+        data = {
+            jenis_kelompok: document.getElementById("dataJenisKelompok").value,
+            laki_laki: parseInt(document.getElementById("dataLakiAgama").value), // Update ID
+            perempuan: parseInt(
+                document.getElementById("dataPerempuanAgama").value
+            ), // Update ID
+            jumlah:
+                parseInt(document.getElementById("dataLakiAgama").value) +
+                parseInt(document.getElementById("dataPerempuanAgama").value),
+        };
+    }
+
+    const url = id ? `/data-${type}/${id}` : `/data-${type}`;
+    const method = isEditMode ? "PUT" : "POST";
+
+    fetch(url, {
+        method: method,
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+                .content,
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then((error) => {
+                    throw new Error(
+                        error.message || "Terjadi kesalahan pada server."
+                    );
+                });
+            }
+            return response.json();
+        })
+        .then((result) => {
+            alert(result.message || "Data berhasil disimpan!");
+            location.reload(); // Refresh halaman
+        })
+        .catch((error) => {
+            alert(error.message);
+            console.error(error);
+        });
+}
+
+// Fungsi untuk membuka modal konfirmasi delete
+function openDeleteModal(type, data) {
+    // Ambil elemen modal
+    const deleteModal = document.getElementById("deleteModal");
+    const deleteMessage = document.getElementById("deleteMessage");
+    const deleteIdInput = document.getElementById("deleteId");
+    const deleteButton = document.getElementById("deleteButton");
+
+    // Set nilai ID data ke input hidden
+    deleteIdInput.value = data.id;
+
+    // Set pesan konfirmasi di modal
+    deleteMessage.textContent = `Apakah Anda yakin ingin menghapus data ini?`;
+
+    // Tambahkan atribut tipe data ke tombol delete
+    deleteButton.setAttribute("data-type", type);
+
+    // Tampilkan modal menggunakan Bootstrap
+    const modalInstance = new bootstrap.Modal(deleteModal);
+    modalInstance.show();
+}
+
+// Fungsi untuk menghapus data
+function deleteData() {
+    const type = document
+        .getElementById("deleteButton")
+        .getAttribute("data-type");
+    const id = document.getElementById("deleteId").value;
+
+    if (!id || !type) {
+        alert("Data tidak valid.");
+        return;
+    }
+
+    fetch(`/data-${type}/${id}`, {
+        method: "DELETE",
+        headers: {
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+                .content,
+        },
+    })
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then((error) => {
+                    throw new Error(error.message || "Gagal menghapus data.");
+                });
+            }
+            return response.json();
+        })
+        .then((result) => {
+            alert(result.message || "Data berhasil dihapus!");
+            location.reload();
+        })
+        .catch((error) => {
+            alert(error.message);
+            console.error(error);
+        });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const loadMoreButtons = document.querySelectorAll(".load-more");
+
+    loadMoreButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const target = button.getAttribute("data-target");
+            const rows = document.querySelectorAll(`.data-row-${target}`);
+            let visibleCount = 0;
+
+            rows.forEach((row) => {
+                if (row.style.display === "none" && visibleCount < 10) {
+                    row.style.display = "";
+                    visibleCount++;
+                }
+            });
+
+            // Sembunyikan tombol jika semua data sudah ditampilkan
+            const hiddenRows = Array.from(rows).filter(
+                (row) => row.style.display === "none"
+            );
+            if (hiddenRows.length === 0) {
+                button.style.display = "none";
+            }
+        });
+    });
+});

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Government Website</title>
+  <title>Desa Tangsimekar</title>
   <!-- Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -18,6 +18,8 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css" />
+  <link rel="stylesheet" href="{{ asset('assets/css/templatemo-edu-meeting.css') }}" />
+
   <style>
     body {
       font-family: "Roboto", sans-serif;
@@ -25,7 +27,7 @@
 
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-        url("assets/images/hero.jpg");
+      url("{{ asset('assets/images/hero.jpg') }}");
       background-size: cover;
       background-position: center;
       padding: 200px 0;
@@ -228,7 +230,7 @@
     <div class="container">
       <a class="navbar-brand" href="#">
         <img
-          src="assets/images/logodesa.png"
+          src="{{ asset('assets/images/logodesa.png') }}"
           alt="Logo Desa"
           width="50"
           height="50"
@@ -371,7 +373,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <section id="home" class="hero-section text-center">
+<section id="home" class="hero-section text-center">
     <div class="container">
       <h1 class="display-4 fw-bold mb-4">Welcome to Desa TANGSIMEKAR</h1>
       <nav aria-label="breadcrumb mb-4">
@@ -386,22 +388,24 @@
             </nav>
     </div>
   </section>
-  <div class="news-container">
-    <!-- Gambar Agenda -->
-    <div class="news-image">
-      <img src="assets/images/berita 1.png" alt="Gambar Agenda">
+
+  <div class="container">
+    <div class="news-container">
+        <!-- Gambar Agenda -->
+        <div class="news-image">
+            <img src="{{ asset('assets/images/' . $agenda->image) }}" alt="Gambar {{ $agenda->title }}" class="img-fluid">
+        </div>
+        <!-- Konten Agenda -->
+        <div class="news-content">
+            <h1 class="news-title">{{ $agenda->title }}</h1>
+            <div class="news-meta">👤 Admin | 📅 {{ \Carbon\Carbon::parse($agenda->agenda_date)->format('d F Y') }}</div>
+            <div class="news-description">
+                <p>{{ $agenda->description }}</p>
+            </div>
+            <a href="{{ route('agenda.showAll') }}" class="btn-more">LIHAT AGENDA LAINNYA</a>
+        </div>
     </div>
-    <!-- Konten Agenda -->
-    <div class="news-content">
-      <h1 class="news-title">Sosialisasi Pengadaan Tanah</h1>
-      <div class="news-meta">👤 Admin | 📅 17 Agustus 2024</div>
-      <div class="news-description">
-        <p>Pada hari rabu tanggal 27 Juli 2022 di Desa Tangsimekar Kecamatan Paseh Kabupaten Bandung pihak PUPR mengadakan rapat sosialisasi terkait pengadaan tanah. Acara ini bertujuan untuk memberikan informasi kepada masyarakat mengenai proses pengadaan tanah yang akan digunakan untuk proyek infrastruktur pemerintah.</p>
-        <p>Anda diperbolehkan untuk menggunakan template ini untuk keperluan sekolah, universitas, atau bisnis Anda. Silakan bebas memodifikasi layout ini.</p>
-      </div>
-      <a href="/agenda" class="btn-more">LIHAT Agenda LAINNYA</a>
-    </div>
-  </div>
+</div>
 
   <!-- Footer -->
   <footer class="site-footer">

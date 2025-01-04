@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Government Website</title>
+    <title>Desa Tangsimekar</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -484,29 +484,28 @@
     <section id="produkhukum" class="lembaga bg-secondary">
       <div class="header section-title">Kepala Desa</div>
       <div class="content">
-        <img
-          alt="Logo of Badan Permusyawaratan Desa"
-          height="150"
-          src="https://storage.googleapis.com/a1aa/image/r7Z2x1HMBsqjN50SFfoGVMFMYkZW45RL4fW1SdOaeIeWkHIPB.jpg"
-          width="150"
-        />
+      <img
+        alt="Foto Kepala Desa"
+        class="img-fluid rounded-circle"
+        height="150"
+        src="{{ asset('assets/images/VillageInstrument_images/' . $kades->image) }}"
+        width="150"
+      />
+      <!-- Informasi Kepala Desa -->
         <div class="details section-title">
           <table>
-            <tr>
-              <td>Nama</td>
-              <td>:</td>
-              <td>Didi Supendi</td>
-            </tr>
-            <tr>
-              <td>Jabatan</td>
-              <td>:</td>
-              <td>Kepala Desa</td>
-            </tr>
-            <tr>
-              <td>Masa Jabatan</td>
-              <td>:</td>
-              <td>2019-2027</td>
-            </tr>
+          <tr>
+          <td><strong>Nama</strong></td>
+          <td>{{ $kades->name }}</td>
+        </tr>
+        <tr>
+          <td><strong>Jabatan</strong></td>
+          <td>{{ $kades->position }}</td>
+        </tr>
+        <tr>
+          <td><strong>Masa Jabatan</strong></td>
+          <td>{{ $kades->nip ?? '2019-2027' }}</td> <!-- Masa Jabatan atau - jika Masa Jabatan kosong -->
+        </tr>
           </table>
         </div>
       </div>
@@ -514,24 +513,7 @@
       <div class="section">
         Deskripsi/Riwayat Hidup
         <div class="content-box mb-5 text-justify">
-        Didi Supendi adalah seorang kepala desa yang berdedikasi, menjabat sejak
-        tahun 2019 hingga 2027. Selama masa kepemimpinannya, Didi telah berkomitmen
-        untuk meningkatkan kesejahteraan masyarakat desanya melalui berbagai program
-        pembangunan infrastruktur, pendidikan, dan pemberdayaan ekonomi lokal.
-        Dengan pendekatan yang inklusif dan aspiratif, ia berhasil membangun
-        hubungan yang harmonis antara pemerintah desa dan masyarakat.<br><br> Berbekal
-        pengalaman yang luas dan pemahaman mendalam terhadap kebutuhan masyarakat,
-        Didi secara konsisten mengembangkan inovasi untuk meningkatkan pelayanan
-        publik. Ia juga aktif dalam menggalang dukungan dari berbagai pihak, baik
-        dari pemerintah daerah maupun lembaga swasta, untuk mempercepat realisasi
-        program pembangunan yang bermanfaat bagi desanya. Dedikasi ini menjadikannya
-        pemimpin yang dihormati dan diandalkan oleh warganya.<br><br> Dalam perjalanan
-        kariernya sebagai kepala desa, Didi dikenal sebagai sosok yang visioner dan
-        berorientasi pada hasil. Ia tidak hanya memimpin dengan kebijakan yang
-        strategis, tetapi juga turun langsung ke lapangan untuk memastikan setiap
-        program berjalan sesuai dengan rencana. Dengan masa kerja hingga tahun 2027,
-        Didi terus berupaya meninggalkan legacy positif yang dapat dirasakan oleh
-        generasi mendatang di desanya.
+        {{ $kades->description ?? 'Deskripsi tidak tersedia' }}
         </div>
       </div>
     </section>

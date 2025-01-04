@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Informasi Pelayanan Desa</title>
+    <title>Desa Tangsimekar</title>
     <link
       crossorigin="anonymous"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -369,9 +369,9 @@
                 <img
                     alt="Illustration of two people, one male and one female, both smiling and wearing uniforms."
                     class="img-fluid"
-                    height="400"
-                    src="https://storage.googleapis.com/a1aa/image/ojPqEae1eeAr3IDQwB262MeqXP7lWJFQLxNoBfzlAPSZeabeJA.jpg"
-                    width="300"
+                    height="500"
+                    src="{{ asset('assets/images/layanan.png') }}"
+                    width="400"
                 />
             </div>
             <div class="col-md-8">

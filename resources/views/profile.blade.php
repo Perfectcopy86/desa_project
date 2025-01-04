@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Government Website</title>
+    <title>Desa Tangsimekar</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -410,154 +410,27 @@
               <h1 class="text-light text-center">STRUKTUR PEMERINTAHAN</h1>
               <h2 class="text-light text-center">DESA TANGSIMEKAR</h2>
             </div>
-            <div class="row justify-content-center">
-              <div class="col-md-4 profile">
-                <img
-                  alt="Person 1"
-                  height="150"
-                  src="https://storage.googleapis.com/a1aa/image/oeehqbVNmyjPeonqd0RiNRQGaypn5IKRXu7GFyO5VDRb9PgnA.jpg"
-                  width="150"
-                />
-                <h5>Person 1</h5>
-                <p>Ketua BPD</p>
-              </div>
-              <div class="col-md-4 profile">
-                <img
-                  alt="Person 2"
-                  height="150"
-                  src="https://storage.googleapis.com/a1aa/image/CWRkn0hkT7JjK1zoXkh2eeyiqQGT1xcsp7eagFhygp1q9PgnA.jpg"
-                  width="150"
-                />
-                <h5>Person 2</h5>
-                <p>Kepala Desa</p>
-              </div>
-            </div>
-            <div class="row justify-content-center">
-              <div class="col-md-4 profile">
-                <img
-                  alt="Person 3"
-                  height="140"
-                  src="https://storage.googleapis.com/a1aa/image/19pl6xo06yohGpPQxm5aAGIs8QBg6bwVurdECRUgH5ipfD4JA.jpg"
-                  width="140"
-                />
-                <h5>Person 3</h5>
-                <p>Sekretaris Desa</p>
-              </div>
-            </div>
-            <div class="row justify-content-center">
-              <div class="col-md-3 profile">
-                <img
-                  alt="Person 4"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/0IRQqeZelNiSEUZLzvvFU0afFYfYfRihu5ERLBLDo0ng2fB8E.jpg"
-                  width="125"
-                />
-                <h5>Person 4</h5>
-                <p>Kaur Perencanaan</p>
-              </div>
-              <div class="col-md-3 profile">
-                <img
-                  alt="Person 5"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/yWFeKJSBf1k9l05fC0I9SrOFwJGv4RHAAhvSvsQv0EaZ9PgnA.jpg"
-                  width="125"
-                />
-                <h5>Person 5</h5>
-                <p>Kaur Keuangan</p>
-              </div>
-              <div class="col-md-3 profile">
-                <img
-                  alt="Person 6"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/yYJBZ5PXqBblKFZpU2rYjDWGKaXSf8KzwMnS9G9FgufxePgnA.jpg"
-                  width="125"
-                />
-                <h5>Person 6</h5>
-                <p>Kaur Tata Usaha & Umum</p>
-              </div>
-            <div class="row justify-content-center">
-              <div class="col-md-2 profile">
-                <img
-                  alt="Person 8"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/pZqmAOheqZSyTa5FeMlXbqDpadrGik3yaciEFjbfF5Th9PgnA.jpg"
-                  width="125"
-                />
-                <h5>Person 7</h5>
-                <p>Kasie Pemerintahan</p>
-              </div>
-              <div class="col-md-2 profile">
-                <img
-                  alt="Person 9"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/9O4xN9W83MYJBRCn1g8DPeLgJZg6urSwis29TVlKWRTVfHwTA.jpg"
-                  width="125"
-                />
-                <h5>Person 8</h5>
-                <p>Staff Kasie Pemerintahan</p>
-              </div>
-              <div class="col-md-2 profile">
-                <img
-                  alt="Person 10"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/cpc63SlviKbFNZJJZVRpnzOFGaBoX4RqSE8KZv5Oqd6qfD4JA.jpg"
-                  width="125"
-                />
-                <h5>Person 9</h5>
-                <p>Kasie Pelayanan</p>
-              </div>
-              <div class="col-md-2 profile">
-                <img
-                  alt="Person 11"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/PeFIAALz9Vw5O6aLCekzKVCT4CqWuMBuxgae9Kh4l0be6fAeE.jpg"
-                  width="125"
-                />
-                <h5>Person 10</h5>
-                <p>Kasie Kesra</p>
-              </div>
-            </div>
-            <div class="row justify-content-center">
-              <div class="col-md-2 profile">
-                <img
-                  alt="Person 12"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/AvjDxFqZYcphPd0yySULXl1c7uctPEmYUtKh2sWO87nsfD4JA.jpg"
-                  width="125"
-                />
-                <h5>Person 11</h5>
-                <p>Kadus I</p>
-              </div>
-              <div class="col-md-2 profile">
-                <img
-                  alt="Person 13"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/g7xjgLQ8bewqe0PsTo76dViHGeqrrGfyWieitTlDw52I1fB8E.jpg"
-                  width="125"
-                />
-                <h5>Person 12</h5>
-                <p>Kadus II</p>
-              </div>
-              <div class="col-md-2 profile">
-                <img
-                  alt="Person 14"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/kLJMnmbFjwoWDFSaXf3s7TdBAI0CcVT2DdwqzSS7hTpZfHwTA.jpg"
-                  width="125"
-                />
-                <h5>Person 13</h5>
-                <p>Kadus III</p>
-              </div>
-              <div class="col-md-2 profile">
-                <img
-                  alt="Person 15"
-                  height="125"
-                  src="https://storage.googleapis.com/a1aa/image/0IRQqeZelNiSEUZLzvvFU0afFYfYfRihu5ERLBLDo0ng2fB8E.jpg"
-                  width="125"
-                />
-                <h5>Person 14</h5>
-                <p>Kadus IV</p>
-              </div>
+            <div class="container">
+              <?php if (!$strukturDesa->isEmpty()): ?>
+                <?php foreach (array_chunk($strukturDesa->toArray(), 4) as $row): ?>
+                  <div class="row justify-content-center">
+                    <?php foreach ($row as $person): ?>
+                      <div class="col-md-3 profile text-center">
+                        <img 
+                          alt="<?= htmlspecialchars($person['name'] ?? 'Profile Image', ENT_QUOTES) ?>" 
+                          height="125" 
+                          src="assets/images/VillageInstrument_images/<?= htmlspecialchars($person['image'] ?? 'default.jpg', ENT_QUOTES) ?>" 
+                          width="125"  
+                        />
+                        <p><?= htmlspecialchars($person['position'] ?? 'Unknown Position', ENT_QUOTES) ?></p>
+                        <p><?= htmlspecialchars($person['name'] ?? 'Unknown Name', ENT_QUOTES) ?></p>
+                      </div>
+                    <?php endforeach; ?>
+                  </div>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <p class="text-center">Data struktur desa tidak tersedia.</p>
+              <?php endif; ?>
             </div>
           </div>
     </section>
@@ -572,7 +445,7 @@
               <img
                 alt="Image of a building in Desa Tangsimekar"
                 height="200"
-                src="https://storage.googleapis.com/a1aa/image/3Caqt4TjTZKfaShLFFBPQ5felRP4eQGw4RDivbfjGJiL6AReE.jpg"
+                src="../assets/images/images.jpg"
                 width="300"
               />
             </div>
@@ -662,7 +535,7 @@
             <img
               alt="Desa Tangsimekar"
               height="300"
-              src="https://storage.googleapis.com/a1aa/image/DLBJn5eegzhrC0fF7oirBDIBs0D45KHKsJc8OsJxelDz9hIPB.jpg"
+              src="../assets/images/masyarakat.jpg"
               width="300"
             />
             <div class="stats">
@@ -769,7 +642,7 @@
                 <img
                   alt="A group of people standing together in a hall"
                   height="100"
-                  src="https://storage.googleapis.com/a1aa/image/UV2pfH3W5USCByopTWhvZkPHnpHYQdecrnyUPQJiocIReRknA.jpg"
+                  src="../assets/images/gotong.jpg"
                   width="100"
                 />
                 <p class="card-text">
@@ -785,7 +658,7 @@
                 <img
                   alt="A group of people attending a social organization meeting"
                   height="100"
-                  src="https://storage.googleapis.com/a1aa/image/NhA2wMIpI2IyMh6VI8gq3sSehaNt9HjknvvvncmvFwTIfIyTA.jpg"
+                  src="../assets/images/lembaga.jpg"
                   width="100"
                 />
                 <p class="card-text">
@@ -802,7 +675,7 @@
                 <img
                   alt="Village officials maintaining order and security"
                   height="100"
-                  src="https://storage.googleapis.com/a1aa/image/ZehYYL3WJ8RDd6WwszzBqIel4fQ5lJw3fuOOfWFDPwZbyHReE.jpg"
+                  src="../assets/images/linmas.jpg"
                   width="100"
                 />
                 <p class="card-text">
